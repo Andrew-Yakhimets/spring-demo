@@ -1,18 +1,21 @@
 package ua.robert.lohkamp;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<>();
+    private Music music;
     private String name;
     private int volume;
 
-    public MusicPlayer() {
-    }
-
-    public void setMusicList(List<Music> musicList) {
-        this.musicList = musicList;
+    @Autowired
+    public MusicPlayer(@Qualifier("rockMusic") Music music) {
+        this.music = music;
     }
 
     public String getName() {
@@ -32,8 +35,6 @@ public class MusicPlayer {
     }
 
     public void playMusic() {
-        for(Music music : musicList) {
-            System.out.println(music.getSong());
-        }
+        System.out.println(music.getSong());
     }
 }

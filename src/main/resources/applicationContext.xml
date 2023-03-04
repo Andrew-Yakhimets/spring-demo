@@ -7,36 +7,5 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
-
-    <bean id="classicalMusic"
-          class="ua.robert.lohkamp.ClassicalMusic">
-    </bean>
-
-    <bean id="rockMusic"
-          class="ua.robert.lohkamp.RockMusic">
-    </bean>
-
-    <bean id="jazzMusic"
-          class="ua.robert.lohkamp.JazzMusic">
-    </bean>
-
-    <bean id="beansList" class="java.util.ArrayList">
-        <constructor-arg>
-        <list value-type="ua.robert.lohkamp.Music">
-        <ref bean="classicalMusic"/>
-        <ref bean="rockMusic" />
-        <ref bean="jazzMusic" />
-        </list>
-        </constructor-arg>
-    </bean>
-
-    <bean id="musicPlayer"
-          class="ua.robert.lohkamp.MusicPlayer">
-        <property name="musicList" ref="beansList"/>
-
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
-
+        <context:component-scan base-package="ua.robert.lohkamp"/>
 </beans>
